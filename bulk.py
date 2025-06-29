@@ -15,6 +15,7 @@
 # ///
 
 import marimo
+import secrets
 
 __generated_with = "0.14.6"
 app = marimo.App(width="columns", layout_file="layouts/bulk.grid.json")
@@ -320,13 +321,12 @@ def _(cumsum_linechart):
 
 @app.cell
 def _(cumsum_linechart, fresh_widget):
-    import random
     import time
 
-    data = [random.random() - 0.5]
+    data = [secrets.SystemRandom().random() - 0.5]
 
     for i in range(100):
-        data += [random.random() - 0.5]
+        data += [secrets.SystemRandom().random() - 0.5]
         # This one line over here causes the update!
         fresh_widget.src = cumsum_linechart(data)
         time.sleep(0.1)
